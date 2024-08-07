@@ -9,15 +9,27 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/todos">Todo list</a>
-        </li>
+        <?php
+        if (isset($_SESSION['user'])) : ?>
+          <li class="nav-item">
+            <a class="nav-link" href="/todos">Todo list</a>
+          </li>
+        <?php
+        endif; ?>
         <li class="nav-item">
           <a class="nav-link" href="/notes">Notes</a>
         </li>
       </ul>
+      <?php
+      if (!isset($_SESSION['user'])) : ?>
         <a href="/login" class="btn btn-outline-primary mx-2">Login</a>
         <a href="/register" class="btn btn-outline-success">Register</a>
+      <?php
+      else : {
+          echo $_SESSION['user'];
+          echo "<a href='/logout' class='btn btn-outline-danger'>Logout</a>";
+        }
+      endif; ?>
     </div>
   </div>
 </nav>
